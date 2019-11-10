@@ -1,6 +1,6 @@
 import {test, isPrime, isSquare, isFibonacci} from "./utils.js";
 
-const divisorMax = 10;
+const divisorMax = 3;
 const trainingSize = 300;
 const testSize = 50;
 const trainingCycles = 200;

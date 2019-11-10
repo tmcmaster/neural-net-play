@@ -2,6 +2,8 @@ import {NeuralNet} from "./neural-net.js";
 
 function test(trainingSize, testSize, trainingCycles, outputRule) {
 
+    //console.log(`Training Size: ${trainingSize}, TestSize: ${testSize}, Training Cycles: ${trainingCycles}`);
+
     const numberOfInputs = (trainingSize).toString(2).length;
 
     let trainingData = {input: [], output: []};

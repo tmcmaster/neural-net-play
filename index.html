@@ -2,10 +2,55 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
-    <script type="module" src="./index.js"></script>
+    <title>Neural Net Play</title>
+<!--    <script type="module" src="./index.js"></script>-->
+
 </head>
 <body>
+    <div class="controls">
+        <label for="divisorMax">Max Divisor</label>
+        <input id="divisorMax" value="3" type="number" min="1" max="100">
+        <label for="trainingSize">Training Size</label>
+        <input id="trainingSize" value="300" type="number" min="1" max="500">
+        <label for="testSize">Test Size</label>
+        <input id="testSize" value="50" type="number" min="1" max="100">
+        <label for="trainingCycles">Training Cycles</label>
+        <input id="trainingCycles" value="200" type="number" min="1" max="500">
+        <button id="run">Run</button>
+    </div>
+    <div id="results" class="results">
+        <ul>
+        </ul>
+    </div>
 
+    <script type="module">
+        import {run,clear,run2} from './test.js';
+
+        const origLog = console.log;
+        console.log = (message) => {
+            origLog(message);
+            const div = document.getElementById('results');
+            const ul = div.getElementsByTagName('ul')[0];
+            const li = document.createElement('li');
+            li.textContent = message;
+            ul.appendChild(li);
+        };
+
+        window.onload = () => {
+            document.getElementById('run').addEventListener('click', () => {
+                clear();
+                console.log('Running tests');
+                setTimeout(() => {
+                    let counter = 0;
+                    let generator = run2();
+                    let result = generator.next();
+                    while (!result.done && ++counter < 10) {
+                        console.log(result.value);
+                        result = generator.next();
+                    }
+                }, 500);
+            });
+        };
+    </script>
 </body>
 </html>
