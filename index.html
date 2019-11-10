@@ -3,8 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <title>Neural Net Play</title>
-<!--    <script type="module" src="./index.js"></script>-->
+    <script type="module" src="./index.js"></script>
+    <style>
 
+        .controls {
+
+        }
+
+        input {
+            min-width: 100px;
+        }
+        label {
+            padding-left: 20px
+        }
+    </style>
 </head>
 <body>
     <div class="controls">
@@ -22,35 +34,5 @@
         <ul>
         </ul>
     </div>
-
-    <script type="module">
-        import {run,clear,run2} from './test.js';
-
-        const origLog = console.log;
-        console.log = (message) => {
-            origLog(message);
-            const div = document.getElementById('results');
-            const ul = div.getElementsByTagName('ul')[0];
-            const li = document.createElement('li');
-            li.textContent = message;
-            ul.appendChild(li);
-        };
-
-        window.onload = () => {
-            document.getElementById('run').addEventListener('click', () => {
-                clear();
-                console.log('Running tests');
-                setTimeout(() => {
-                    let counter = 0;
-                    let generator = run2();
-                    let result = generator.next();
-                    while (!result.done && ++counter < 10) {
-                        console.log(result.value);
-                        result = generator.next();
-                    }
-                }, 500);
-            });
-        };
-    </script>
 </body>
 </html>
